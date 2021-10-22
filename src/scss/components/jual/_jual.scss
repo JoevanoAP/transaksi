@@ -1,0 +1,26 @@
+.form {
+  margin-top: 20vh;
+  &-content {
+    display: flex;
+    justify-content: center;
+
+    .left {
+      margin-right: 10vh;
+    }
+  }
+
+  &-content-2 {
+    margin-top: 35px;
+    text-align: center;
+  }
+}
+
+.table {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &-content {
+    margin-top: 25px;
+  }
+}
