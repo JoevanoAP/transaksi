@@ -1,10 +1,10 @@
 <?php
 session_start();
 include '../../../../src/conn.php';
-$s1 = "SELECT * FROM tbjual";
+$s1 = "SELECT * FROM tbbeli";
 $q1 = mysqli_query($conn, $s1);
 $num1 = mysqli_num_rows($q1);
-$nobeli = "JL-" . $num1;
+$nobeli = "BL-" . $num1;
 $tgl = date("Y-m-d");
 $_SESSION['kodeuser'] = $kodeuser;
 ?>
@@ -38,10 +38,9 @@ $_SESSION['kodeuser'] = $kodeuser;
                                 $telp = $re['telp'];
                                 $alamat = $re['alamat'];
                         ?>
-                        <option value="<?php echo $kodepel; ?>"
-                            onclick="tampil_sup(<?php echo "'$nama','$alamat','$telp'"; ?>)">
-                            <?php echo $nama; ?>
-                        </option>
+                                <option value="<?php echo $kodepel; ?>" onclick="tampil_sup(<?php echo "'$nama','$alamat','$telp'"; ?>)">
+                                    <?php echo $nama; ?>
+                                </option>
                         <?php
                             };
                         endwhile;
@@ -76,7 +75,7 @@ $_SESSION['kodeuser'] = $kodeuser;
                             $kodeuser = $re2['kodeuser'];
                             $namauser = $re2['nama'];
                         ?>
-                        <option value="<?php echo $kodeuser; ?>"><?php echo $namauser; ?></option>
+                            <option value="<?php echo $kodeuser; ?>"><?php echo $namauser; ?></option>
                         <?php
                         }
                         ?>
@@ -109,10 +108,9 @@ $_SESSION['kodeuser'] = $kodeuser;
                             $satuan = $re3['satuan'];
                             $hargabeli = $re3['hargabeli'];
                         ?>
-                        <option value="<?php echo $kodebarang; ?>"
-                            onclick="tampil_barang(<?php echo "'$jenis','$merk','$satuan','$hargabeli'" ?>)">
-                            <?php echo $namabarang; ?>
-                        </option>
+                            <option value="<?php echo $kodebarang; ?>" onclick="tampil_barang(<?php echo "'$jenis','$merk','$satuan','$hargabeli'" ?>)">
+                                <?php echo $namabarang; ?>
+                            </option>
                         <?php
                         }
                         ?>
@@ -157,8 +155,7 @@ $_SESSION['kodeuser'] = $kodeuser;
                 <td>Disc (%)</td>
                 <td>:</td>
                 <td>
-                    <input type="number" name="discper" id="discper" value="0" onclick="htg_gtotal()"> = <input
-                        type="text" name="disc" id="disc" readonly>
+                    <input type="number" name="discper" id="discper" value="0" onclick="htg_gtotal()"> = <input type="text" name="disc" id="disc" readonly>
                 </td>
                 <td><label id="rp_disc"></label></td>
             </tr>
@@ -167,8 +164,7 @@ $_SESSION['kodeuser'] = $kodeuser;
                 <td>Pajak (%) </td>
                 <td>:</td>
                 <td>
-                    <input type="number" name="pajakper" id="pajakper" value="0" onclick="htg_gtotal()"> = <input
-                        type="text" name="pajak" id="pajak" readonly>
+                    <input type="number" name="pajakper" id="pajakper" value="0" onclick="htg_gtotal()"> = <input type="text" name="pajak" id="pajak" readonly>
                 </td>
                 <td><label id="rp_pajak"></label></td>
             </tr>
@@ -190,99 +186,99 @@ $_SESSION['kodeuser'] = $kodeuser;
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
-document.getElementById('kodeuser').value = "<?php echo $kodeuser; ?>";
+    document.getElementById('kodeuser').value = "<?php echo $kodeuser; ?>";
 
-function tampil_sup(nama, alamat, telp) {
-    document.getElementById("alamat").value = alamat;
-    document.getElementById("telp").value = telp;
-}
-
-function tampil_barang(jenis, merk, satuan, harga) {
-    document.getElementById('jenis').value = jenis;
-    document.getElementById('merk').value = merk;
-    document.getElementById('satuan').value = satuan;
-    document.getElementById('harga').value = harga;
-    document.getElementById('jlh').focus();
-    var tombol = document.getElementById('cmd_add').value = "ADD";
-    //htg_total();
-}
-
-function htg_total() {
-    var jlh = document.getElementById('jlh').value;
-    var harga = document.getElementById('harga').value;
-    var total = jlh * harga;
-    document.getElementById('total').value = total;
-}
-
-function add_data() {
-    const ajaxku = new XMLHttpRequest();
-    ajaxku.onload = function() {
-        document.getElementById("div_data").innerHTML = this.responseText;
+    function tampil_sup(nama, alamat, telp) {
+        document.getElementById("alamat").value = alamat;
+        document.getElementById("telp").value = telp;
     }
-    ajaxku.onreadystatechange = function() {
-        var data = this.responseText;
-        data = data.split('#');
-        document.getElementById("div_data").innerHTML = data[0];
-        document.getElementById('subtotal').value = data[1];
-        document.getElementById('grandtotal').value = data[1];
-    };
-    var nobeli = document.getElementById('nobeli').value;
-    var notemp = document.getElementById('notemp').value;
-    var kodebarang = document.getElementById('kodebarang').value;
-    var jlh = document.getElementById('jlh').value;
-    var harga = document.getElementById('harga').value;
-    var total = document.getElementById('total').value;
-    var tombol = document.getElementById('cmd_add').value;
 
-    url = "_addbeli.php?nobeli=" + nobeli + "&notemp=" + notemp + "&kodebarang=" + kodebarang + "&jlh=" + jlh +
-        "&harga=" + harga + "&total=" + total + "&cmd=" + tombol;
-
-    ajaxku.open("GET", url);
-    ajaxku.send();
-}
-
-function f_del(notemp) {
-    const ajaxku = new XMLHttpRequest();
-    ajaxku.onload = function() {
-        var data = this.responseText;
-        data = data.split('#');
-        document.getElementById("div_data").innerHTML = data[0];
-        document.getElementById('subtotal').value = data[1];
-        document.getElementById('grandtotal').value = data[1];
+    function tampil_barang(jenis, merk, satuan, harga) {
+        document.getElementById('jenis').value = jenis;
+        document.getElementById('merk').value = merk;
+        document.getElementById('satuan').value = satuan;
+        document.getElementById('harga').value = harga;
+        document.getElementById('jlh').focus();
+        var tombol = document.getElementById('cmd_add').value = "ADD";
+        //htg_total();
     }
-    var url = "_addbeli.php?&notemp=" + notemp + "&cmd=hapus";
 
-    ajaxku.open("GET", url);
-    ajaxku.send();
+    function htg_total() {
+        var jlh = document.getElementById('jlh').value;
+        var harga = document.getElementById('harga').value;
+        var total = jlh * harga;
+        document.getElementById('total').value = total;
+    }
+
+    function add_data() {
+        const ajaxku = new XMLHttpRequest();
+        ajaxku.onload = function() {
+            document.getElementById("div_data").innerHTML = this.responseText;
+        }
+        ajaxku.onreadystatechange = function() {
+            var data = this.responseText;
+            data = data.split('#');
+            document.getElementById("div_data").innerHTML = data[0];
+            document.getElementById('subtotal').value = data[1];
+            document.getElementById('grandtotal').value = data[1];
+        };
+        var nobeli = document.getElementById('nobeli').value;
+        var notemp = document.getElementById('notemp').value;
+        var kodebarang = document.getElementById('kodebarang').value;
+        var jlh = document.getElementById('jlh').value;
+        var harga = document.getElementById('harga').value;
+        var total = document.getElementById('total').value;
+        var tombol = document.getElementById('cmd_add').value;
+
+        url = "_addbeli.php?nobeli=" + nobeli + "&notemp=" + notemp + "&kodebarang=" + kodebarang + "&jlh=" + jlh +
+            "&harga=" + harga + "&total=" + total + "&cmd=" + tombol;
+
+        ajaxku.open("GET", url);
+        ajaxku.send();
+    }
+
+    function f_del(notemp) {
+        const ajaxku = new XMLHttpRequest();
+        ajaxku.onload = function() {
+            var data = this.responseText;
+            data = data.split('#');
+            document.getElementById("div_data").innerHTML = data[0];
+            document.getElementById('subtotal').value = data[1];
+            document.getElementById('grandtotal').value = data[1];
+        }
+        var url = "_addbeli.php?&notemp=" + notemp + "&cmd=hapus";
+
+        ajaxku.open("GET", url);
+        ajaxku.send();
 
 
-}
+    }
 
-function f_edit(notemp, kodebarang, jenis, merk, satuan, jlh, harga, total) {
-    document.getElementById('notemp').value = notemp;
-    document.getElementById('kodebarang').value = kodebarang;
-    document.getElementById('jenis').value = jenis;
-    document.getElementById('merk').value = merk;
-    document.getElementById('satuan').value = satuan;
-    document.getElementById('jlh').value = jlh;
-    document.getElementById('harga').value = harga;
-    document.getElementById('total').value = total;
-    document.getElementById('cmd_add').value = "ubah";
-}
+    function f_edit(notemp, kodebarang, jenis, merk, satuan, jlh, harga, total) {
+        document.getElementById('notemp').value = notemp;
+        document.getElementById('kodebarang').value = kodebarang;
+        document.getElementById('jenis').value = jenis;
+        document.getElementById('merk').value = merk;
+        document.getElementById('satuan').value = satuan;
+        document.getElementById('jlh').value = jlh;
+        document.getElementById('harga').value = harga;
+        document.getElementById('total').value = total;
+        document.getElementById('cmd_add').value = "ubah";
+    }
 
-function htg_gtotal() {
-    var subtotal = document.getElementById('subtotal').value;
-    var disc = document.getElementById('discper').value;
-    var hrg_disc = disc / 100 * subtotal;
-    $('#disc').val(hrg_disc);
+    function htg_gtotal() {
+        var subtotal = document.getElementById('subtotal').value;
+        var disc = document.getElementById('discper').value;
+        var hrg_disc = disc / 100 * subtotal;
+        $('#disc').val(hrg_disc);
 
-    var pajak = document.getElementById('pajakper').value;
-    var hrg_pajak = pajak / 100 * (subtotal - hrg_disc);
-    $('#pajak').val(hrg_pajak);
+        var pajak = document.getElementById('pajakper').value;
+        var hrg_pajak = pajak / 100 * (subtotal - hrg_disc);
+        $('#pajak').val(hrg_pajak);
 
-    var grandtotal = subtotal - hrg_disc + hrg_pajak;
-    $('#grandtotal').val(grandtotal);
-}
+        var grandtotal = subtotal - hrg_disc + hrg_pajak;
+        $('#grandtotal').val(grandtotal);
+    }
 </script>
 
 </html>
