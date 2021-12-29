@@ -12,7 +12,7 @@ $tanggal = date('Y-m-d');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Beli</title>
+    <title>Laporan Jual</title>
 </head>
 
 <body>
@@ -24,13 +24,13 @@ $tanggal = date('Y-m-d');
                 <input type="text" id="tanggal2" value="<?= $tanggal ?>">
             </div>
             <div class="lap-content-inner">
-                <label for="exampleInputEmail1">No beli</label>
-                <input type="text" id="nobeli">
+                <label for="exampleInputEmail1">No jual</label>
+                <input type="text" id="nojual">
 
             </div>
             <div class="lap-content-inner">
-                <label for="exampleInputEmail1">Nama Supplier</label>
-                <input type="text" id="namasup">
+                <label for="exampleInputEmail1">Nama Pelanggan</label>
+                <input type="text" id="namapel">
 
             </div>
             <div class="lap-content-inner">
@@ -39,7 +39,7 @@ $tanggal = date('Y-m-d');
 
             </div>
             <div class="lap-content-inner">
-                <button class="btn" onclick="viewbeli()">View</button>
+                <button class="btn" onclick="viewjual()">View</button>
             </div>
         </div>
         <div id="table" class="table"></div>
@@ -47,17 +47,17 @@ $tanggal = date('Y-m-d');
         <!-- Jquery Inject -->
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script>
-            function viewbeli() {
-                var nobeli = $("#nobeli").val();
+            function viewjual() {
+                var nobeli = $("#nojual").val();
                 var tanggal = $("#tanggal").val();
                 var tanggal2 = $("#tanggal2").val();
                 var user = $("#user").val();
-                var namasup = $("#namasup").val();
+                var namasup = $("#namapel").val();
                 const xhttp = new XMLHttpRequest();
                 xhttp.onload = function() {
                     document.getElementById("table").innerHTML = this.responseText;
                 };
-                var url = "viewbeli.php?nobeli=" + nobeli + "&tanggal=" + tanggal + "&tanggal2=" + tanggal2 + "&user=" + user + "&namasup=" + namasup;
+                var url = "viewjual.php?nojual=" + nobeli + "&tanggal=" + tanggal + "&tanggal2=" + tanggal2 + "&user=" + user + "&namapel=" + namasup;
                 xhttp.open("GET", url)
                 xhttp.send();
                 return false;
